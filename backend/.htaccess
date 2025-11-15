@@ -1,0 +1,16 @@
+# cPanel Node.js Configuration
+# This file helps cPanel Passenger recognize your Node.js application
+
+# If Passenger is enabled, use these settings
+<IfModule mod_passenger.c>
+  PassengerNodejs /opt/alt/nodejs18/usr/bin/node
+  PassengerAppRoot /home/username/nodejs/backend
+  PassengerAppType node
+  PassengerStartupFile server.js
+  PassengerEnabled on
+</IfModule>
+
+# If using PHP-FPM or other configurations
+# Remove or comment out the above if not using Passenger
+
+

@@ -1,0 +1,28 @@
+{
+  "name": "dominion-city-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Dominion City Directory",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "init-db": "node config/init-db.js",
+    "migrate-auth": "node config/migrate-admin-to-supabase.js",
+    "postinstall": "echo 'Backend dependencies installed successfully'"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.78.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
