@@ -15,20 +15,21 @@ const getApiUrl = () => {
     
     // If we're on localhost, use localhost API
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
-      return 'http://localhost:5050/api';
+      return 'http://localhost:5051/api';
     }
     
-    // For other domains, construct API URL from current origin
+    // For production domains (like dcdirect.online), construct API URL from current origin
     const protocol = window.location.protocol;
-    const port = window.location.port === '5050' ? '' : ':5050';
-    return `${protocol}//${hostname}${port}/api`;
+    // In production, API is typically on the same domain (e.g., dcdirect.online/api)
+    // No port needed for production HTTPS
+    return `${protocol}//${hostname}/api`;
   }
   
   // Priority 3: Check NODE_ENV for development (server-side)
   const isDev = process.env.NODE_ENV === 'development';
   
   if (isDev) {
-    return 'http://localhost:5050/api';
+    return 'http://localhost:5051/api';
   }
   
   // Default: Throw error if no API URL is configured

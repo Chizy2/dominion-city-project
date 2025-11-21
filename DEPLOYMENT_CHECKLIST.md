@@ -31,7 +31,7 @@ Use this checklist to ensure a smooth deployment to cPanel hosting.
 - [ ] Set Node.js version: **18.x or 20.x**
 - [ ] Application mode: **Production**
 - [ ] Application root: `nodejs/backend` (or your path)
-- [ ] Application URL: `yourdomain.com/api` (or subdomain)
+- [ ] Application URL: `dcdirect.online/api` (or subdomain)
 - [ ] Application startup file: `server.js`
 - [ ] Click **Create**
 
@@ -50,7 +50,7 @@ Use this checklist to ensure a smooth deployment to cPanel hosting.
 ### Step 5: Start Backend
 - [ ] Click **Start App**
 - [ ] Check logs for errors
-- [ ] Test health endpoint: `https://yourdomain.com/api/health`
+- [ ] Test health endpoint: `https://dcdirect.online/api/health`
 
 ---
 
@@ -72,7 +72,7 @@ Use this checklist to ensure a smooth deployment to cPanel hosting.
 - [ ] Set Node.js version: **18.x or 20.x**
 - [ ] Application mode: **Production**
 - [ ] Application root: `public_html`
-- [ ] Application URL: `yourdomain.com`
+- [ ] Application URL: `dcdirect.online`
 - [ ] Application startup file: `server.js`
 - [ ] Click **Create**
 
@@ -98,8 +98,8 @@ Use this checklist to ensure a smooth deployment to cPanel hosting.
 ## ✅ Post-Deployment Testing
 
 ### Backend Tests
-- [ ] Health check: `https://yourdomain.com/api/health`
-- [ ] Database health: `https://yourdomain.com/api/health/db`
+- [ ] Health check: `https://dcdirect.online/api/health`
+- [ ] Database health: `https://dcdirect.online/api/health/db`
 - [ ] API endpoints respond correctly
 - [ ] CORS works (frontend can access backend)
 

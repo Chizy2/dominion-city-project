@@ -4,7 +4,7 @@ Create a file named `.env` in this directory with the following variables. Prefe
 
 ```
 NODE_ENV=development
-PORT=5000
+PORT=5051
 
 # Prefer this for Supabase (copy from Supabase → Project Settings → Database → Connection string → URI)
 # Example: postgres://postgres:YOUR_PASSWORD@YOUR_PROJECT_REF.supabase.co:5432/postgres

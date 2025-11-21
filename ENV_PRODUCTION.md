@@ -33,7 +33,7 @@ SUPABASE_ANON_KEY=your_supabase_anon_key_here
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
 
 # Frontend URL (for CORS)
-FRONTEND_URL=https://yourdomain.com
+FRONTEND_URL=https://dcdirect.online
 
 # Google Maps API (Optional)
 GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
@@ -50,7 +50,7 @@ NODE_ENV=production
 PORT=3000
 
 # Next.js requires NEXT_PUBLIC_ prefix for client-side variables
-NEXT_PUBLIC_API_URL=https://yourdomain.com/api
+NEXT_PUBLIC_API_URL=https://dcdirect.online/api
 NEXT_PUBLIC_SUPABASE_URL=https://ussoyjjlauhggwsezbhy.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
@@ -95,13 +95,13 @@ Or use an online generator. Minimum 32 characters recommended.
 
 ### 5. FRONTEND_URL
 Your production domain:
-- `https://yourdomain.com`
-- `https://www.yourdomain.com` (if using www)
+- `https://dcdirect.online`
+- `https://www.dcdirect.online` (if using www)
 
 ### 6. NEXT_PUBLIC_API_URL
 Your backend API URL:
-- `https://yourdomain.com/api` (if backend is in subdirectory)
-- `https://api.yourdomain.com` (if using subdomain)
+- `https://dcdirect.online/api` (if backend is in subdirectory)
+- `https://api.dcdirect.online` (if using subdomain)
 
 ---
 

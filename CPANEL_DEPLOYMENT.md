@@ -43,7 +43,7 @@ JWT_EXPIRE=7d
 SUPABASE_URL=https://ussoyjjlauhggwsezbhy.supabase.co
 SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-FRONTEND_URL=https://yourdomain.com
+FRONTEND_URL=https://dcdirect.online
 ```
 
 **Important Notes:**
@@ -63,13 +63,13 @@ In cPanel Node.js App Manager:
 #### Step 4: Start the Application
 
 1. In cPanel Node.js App Manager, click **Start App**
-2. Your backend API will be available at: `https://yourdomain.com/api/` (or your configured subdomain)
+2. Your backend API will be available at: `https://dcdirect.online/api/` (or your configured subdomain)
 
 #### Step 5: Verify Backend
 
 Test the health endpoint:
 ```bash
-curl https://yourdomain.com/api/health
+curl https://dcdirect.online/api/health
 ```
 
 ---
@@ -92,7 +92,7 @@ This creates an optimized production build in the `.next` folder.
 Create `frontend/.env.production`:
 
 ```env
-NEXT_PUBLIC_API_URL=https://yourdomain.com/api
+NEXT_PUBLIC_API_URL=https://dcdirect.online/api
 NEXT_PUBLIC_SUPABASE_URL=https://ussoyjjlauhggwsezbhy.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
@@ -110,14 +110,14 @@ Upload the entire `frontend/` folder to cPanel:
    - **Node.js version**: 18.x or 20.x (recommended)
    - **Application mode**: Production
    - **Application root**: `public_html`
-   - **Application URL**: Your domain (e.g., `yourdomain.com`)
+   - **Application URL**: Your domain (e.g., `dcdirect.online`)
    - **Application startup file**: `frontend/server.js` or `server.js` (if you create a root server.js)
 
 3. Add environment variables:
    ```env
    NODE_ENV=production
    PORT=3000
-   NEXT_PUBLIC_API_URL=https://yourdomain.com/api
+   NEXT_PUBLIC_API_URL=https://dcdirect.online/api
    NEXT_PUBLIC_SUPABASE_URL=https://ussoyjjlauhggwsezbhy.supabase.co
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
@@ -219,8 +219,8 @@ PassengerStartupFile server.js
 
 ### Health Check Endpoints
 
-- Backend: `https://yourdomain.com/api/health`
-- Database: `https://yourdomain.com/api/health/db`
+- Backend: `https://dcdirect.online/api/health`
+- Database: `https://dcdirect.online/api/health/db`
 
 ### Logs
 

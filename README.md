@@ -82,7 +82,7 @@ This directory exists to strengthen the bonds of fellowship in the Body of Chris
 
    Create `backend/.env` file:
    ```env
-   PORT=5000
+   PORT=5051
    NODE_ENV=development
 
    # Database
@@ -104,7 +104,7 @@ This directory exists to strengthen the bonds of fellowship in the Body of Chris
 
    Create `frontend/.env.local` file:
    ```env
-   NEXT_PUBLIC_API_URL=http://localhost:5000/api
+   NEXT_PUBLIC_API_URL=http://localhost:5051/api
    ```
 
 5. **Start the application**
@@ -129,7 +129,7 @@ This directory exists to strengthen the bonds of fellowship in the Body of Chris
 
 - **Public Site:** http://localhost:3000
 - **Admin Login:** http://localhost:3000/admin/login
-- **Backend API:** http://localhost:5000/api
+- **Backend API:** http://localhost:5051/api
 
 ### Default Admin Credentials
 

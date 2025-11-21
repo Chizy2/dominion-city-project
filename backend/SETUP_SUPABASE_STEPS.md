@@ -36,7 +36,7 @@ Create or edit `backend/.env` file and add:
 
 ```env
 NODE_ENV=development
-PORT=5000
+PORT=5051
 
 # SUPABASE DATABASE CONNECTION
 DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@db.ussoyjjlauhggwsezbhy.supabase.co:5432/postgres

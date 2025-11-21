@@ -8,7 +8,7 @@
 # In cPanel Node.js App Manager:
 1. Create Application
    - Root: nodejs/backend
-   - URL: yourdomain.com/api
+   - URL: dcdirect.online/api
    - Startup: server.js
    - Node: 18.x or 20.x
 
@@ -21,7 +21,7 @@
    SUPABASE_URL=https://ussoyjjlauhggwsezbhy.supabase.co
    SUPABASE_ANON_KEY=[from Supabase Dashboard]
    SUPABASE_SERVICE_ROLE_KEY=[from Supabase Dashboard]
-   FRONTEND_URL=https://yourdomain.com
+   FRONTEND_URL=https://dcdirect.online
 
 3. Run NPM Install → Start App
 ```
@@ -39,14 +39,14 @@ npm run build
 
 2. Create Application
    - Root: public_html
-   - URL: yourdomain.com
+   - URL: dcdirect.online
    - Startup: server.js
    - Node: 18.x or 20.x
 
 3. Environment Variables:
    NODE_ENV=production
    PORT=3000
-   NEXT_PUBLIC_API_URL=https://yourdomain.com/api
+   NEXT_PUBLIC_API_URL=https://dcdirect.online/api
    NEXT_PUBLIC_SUPABASE_URL=https://ussoyjjlauhggwsezbhy.supabase.co
    NEXT_PUBLIC_SUPABASE_ANON_KEY=[from Supabase Dashboard]
    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=[your key]
@@ -58,10 +58,10 @@ npm run build
 
 ```bash
 # Backend
-curl https://yourdomain.com/api/health
+curl https://dcdirect.online/api/health
 
 # Frontend
-Open https://yourdomain.com in browser
+Open https://dcdirect.online in browser
 ```
 
 ---

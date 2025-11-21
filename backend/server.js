@@ -103,17 +103,31 @@ app.use((err, req, res, next) => {
 
 // Use PORT from environment (required for cPanel/Passenger)
 // cPanel automatically sets PORT environment variable
-// Default to 5050 for this deployment
-const PORT = process.env.PORT || 5050;
+// Default to 5051 for this deployment
+const PORT = process.env.PORT || 5051;
 
 // Listen on all interfaces (required for cPanel)
 const HOST = process.env.HOST || '0.0.0.0';
 
 app.listen(PORT, HOST, () => {
+  const env = process.env.NODE_ENV || 'development';
+  const isProduction = env === 'production';
+  
   console.log(`🚀 Server running on ${HOST}:${PORT}`);
-  console.log(`📡 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🔗 API available at: http://${HOST}:${PORT}/api`);
-  console.log(`🔒 CORS configured for: ${corsOrigins.length > 0 ? corsOrigins.join(', ') : 'All origins'}`);
+  console.log(`📡 Environment: ${env}${isProduction ? ' (PRODUCTION)' : ''}`);
+  
+  if (isProduction) {
+    console.log(`🔗 API available at: https://dcdirect.online/api`);
+  } else {
+    console.log(`🔗 API available at: http://${HOST}:${PORT}/api`);
+  }
+  
+  console.log(`🔒 CORS configured for: ${corsOrigins.length > 0 ? corsOrigins.join(', ') : 'All origins (development mode)'}`);
+  
+  if (isProduction) {
+    console.log(`✅ Production mode enabled`);
+    console.log(`🌐 Domain: dcdirect.online`);
+  }
   
   // Start keep-alive service after server starts
   startKeepAlive();

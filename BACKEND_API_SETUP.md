@@ -25,17 +25,17 @@ The frontend `.env.local` file should point to the correct backend URL:
 
 **For Local Development:**
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:5050/api
+NEXT_PUBLIC_API_URL=http://localhost:5051/api
 ```
 
 **For Production:**
 ```env
-NEXT_PUBLIC_API_URL=https://your-backend-domain.com/api
+NEXT_PUBLIC_API_URL=https://dcdirect.online/api
 ```
 
 **Current Issue:**
 - Ensure your `.env.local` points to the correct backend URL
-- Use `http://localhost:5050/api` for local development
+- Use `http://localhost:5051/api` for local development
 
 ### 3. CORS Configuration
 
@@ -50,12 +50,12 @@ If your frontend is on a different domain, add it to the CORS configuration in `
 
 **Test local backend:**
 ```bash
-curl http://localhost:5050/api/businesses
+curl http://localhost:5051/api/businesses
 ```
 
 **Test production backend:**
 ```bash
-curl https://your-backend-domain.com/api/businesses
+curl https://dcdirect.online/api/businesses
 ```
 
 ### 5. Browser Console
@@ -70,7 +70,7 @@ Check the browser console (F12) for:
 
 **For immediate local development:**
 1. Ensure backend is running: `cd backend && npm run dev`
-2. Update `.env.local`: `NEXT_PUBLIC_API_URL=http://localhost:5050/api`
+2. Update `.env.local`: `NEXT_PUBLIC_API_URL=http://localhost:5051/api`
 3. Restart frontend: `cd frontend && npm run dev`
 4. Check browser console for API calls
 

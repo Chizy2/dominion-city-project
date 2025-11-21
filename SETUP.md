@@ -42,7 +42,7 @@ The initialization process will:
 Create `backend/.env`:
 
 ```env
-PORT=5000
+PORT=5051
 NODE_ENV=development
 
 # Database
@@ -71,7 +71,7 @@ GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 Create `frontend/.env.local`:
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:5000/api
+NEXT_PUBLIC_API_URL=http://localhost:5051/api
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
 ```
 
@@ -91,7 +91,7 @@ From the root directory:
 npm run dev
 ```
 
-This starts both frontend (port 3000) and backend (port 5000).
+This starts both frontend (port 3000) and backend (port 5051).
 
 Or run separately:
 
@@ -106,7 +106,7 @@ npm run client
 ## 6. Access the Application
 
 - **Frontend:** http://localhost:3000
-- **Backend API:** http://localhost:5000/api
+- **Backend API:** http://localhost:5051/api
 - **Admin Login:** http://localhost:3000/admin/login
   - Email: `admin@dominioncity.com`
   - Password: `admin123`
