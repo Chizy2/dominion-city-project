@@ -30,16 +30,19 @@ if (connectionString && isSupabase) {
     // Session pooler specific configuration
     poolConfig.max = 10; // Limit connections for pooler
     poolConfig.idleTimeoutMillis = 30000;
-    poolConfig.connectionTimeoutMillis = 30000;
+    poolConfig.connectionTimeoutMillis = 60000; // Increased to 60s for paused projects to wake up
     // Better connection recovery
     poolConfig.allowExitOnIdle = false;
+    // Retry configuration
+    poolConfig.maxUses = 7500; // Reuse connections longer
     console.log('🔗 Using Supabase Session Pooler (recommended for better connection management)');
   } else {
     // Direct connection settings (can use more connections)
     poolConfig.max = 20;
     poolConfig.idleTimeoutMillis = 30000;
-    poolConfig.connectionTimeoutMillis = 30000;
+    poolConfig.connectionTimeoutMillis = 60000; // Increased to 60s for paused projects to wake up
     poolConfig.allowExitOnIdle = false;
+    poolConfig.maxUses = 7500;
     console.log('🔗 Using Supabase Direct Connection (consider switching to pooler for better performance)');
   }
 

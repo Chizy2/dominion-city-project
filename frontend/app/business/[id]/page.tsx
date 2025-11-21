@@ -57,55 +57,60 @@ export default function BusinessProfilePage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-50 py-8">
+      <main className="min-h-screen bg-gray-50 py-4 sm:py-8">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Images */}
             {business.images && business.images.length > 0 && (
-              <div className="mb-8">
+              <div className="mb-6 sm:mb-8">
                 <img
                   src={business.images[0]}
                   alt={business.name}
-                  className="w-full h-96 object-cover rounded-lg shadow-lg"
+                  className="w-full h-48 sm:h-64 md:h-96 object-cover rounded-lg shadow-lg"
                 />
               </div>
             )}
 
             {/* Main Info */}
-            <div className="bg-white rounded-lg shadow-md p-8 mb-6">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h1 className="text-4xl font-bold text-dominion-blue mb-2">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-8 mb-4 sm:mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-4">
+                <div className="flex-1">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-dominion-blue mb-2">
                     {business.name}
                   </h1>
-                  <p className="text-xl text-dominion-gold font-semibold mb-4">
+                  <p className="text-lg sm:text-xl text-dominion-gold font-semibold mb-4">
                     {business.category}
                   </p>
                 </div>
-                <button className="bg-dominion-gold text-dominion-blue px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition">
-                  Call Now
-                </button>
+                {business.phone && (
+                  <a
+                    href={`tel:${business.phone}`}
+                    className="bg-dominion-gold text-dominion-blue px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:opacity-90 transition text-sm sm:text-base text-center inline-block w-full sm:w-auto"
+                  >
+                    Call Now
+                  </a>
+                )}
               </div>
 
-              <p className="text-gray-700 text-lg mb-6">
+              <p className="text-gray-700 text-base sm:text-lg mb-4 sm:mb-6">
                 {business.description || 'No description available'}
               </p>
             </div>
 
             {/* Contact & Location */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-2xl font-bold text-dominion-blue mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+              <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-dominion-blue mb-3 sm:mb-4">
                   Contact Information
                 </h2>
                 {business.phone && (
-                  <p className="text-gray-700 mb-3">
-                    <span className="font-semibold">Phone:</span> {business.phone}
+                  <p className="text-gray-700 mb-2 sm:mb-3 text-sm sm:text-base">
+                    <span className="font-semibold">Phone:</span> <a href={`tel:${business.phone}`} className="text-dominion-blue hover:underline">{business.phone}</a>
                   </p>
                 )}
                 {business.email && (
-                  <p className="text-gray-700 mb-3">
-                    <span className="font-semibold">Email:</span> {business.email}
+                  <p className="text-gray-700 mb-2 sm:mb-3 text-sm sm:text-base">
+                    <span className="font-semibold">Email:</span> <a href={`mailto:${business.email}`} className="text-dominion-blue hover:underline break-all">{business.email}</a>
                   </p>
                 )}
                 {business.whatsapp && (
@@ -113,25 +118,25 @@ export default function BusinessProfilePage() {
                     href={`https://wa.me/${business.whatsapp.replace(/\D/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                    className="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition text-sm sm:text-base mt-2"
                   >
                     WhatsApp
                   </a>
                 )}
               </div>
 
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-2xl font-bold text-dominion-blue mb-4">
+              <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-dominion-blue mb-3 sm:mb-4">
                   Location
                 </h2>
                 {business.address && (
-                  <p className="text-gray-700 mb-2">{business.address}</p>
+                  <p className="text-gray-700 mb-2 text-sm sm:text-base">{business.address}</p>
                 )}
-                <p className="text-gray-700 mb-2">
+                <p className="text-gray-700 mb-2 text-sm sm:text-base">
                   {business.city}, {business.state || business.country}
                 </p>
                 {business.church_branch && (
-                  <p className="text-gray-700 mt-3">
+                  <p className="text-gray-700 mt-3 text-sm sm:text-base">
                     <span className="font-semibold">Church Branch:</span> {business.church_branch}
                   </p>
                 )}
@@ -140,17 +145,17 @@ export default function BusinessProfilePage() {
 
             {/* Social Links */}
             {(business.website || business.instagram) && (
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-2xl font-bold text-dominion-blue mb-4">
+              <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-dominion-blue mb-3 sm:mb-4">
                   Connect With Us
                 </h2>
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   {business.website && (
                     <a
                       href={business.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-dominion-blue hover:text-dominion-gold transition"
+                      className="text-dominion-blue hover:text-dominion-gold transition text-sm sm:text-base underline"
                     >
                       Website
                     </a>
@@ -160,7 +165,7 @@ export default function BusinessProfilePage() {
                       href={`https://instagram.com/${business.instagram}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-dominion-blue hover:text-dominion-gold transition"
+                      className="text-dominion-blue hover:text-dominion-gold transition text-sm sm:text-base underline"
                     >
                       Instagram
                     </a>

@@ -3,6 +3,9 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
+// Start keep-alive service to prevent Supabase from auto-pausing
+const { startKeepAlive } = require('./config/keep-alive');
+
 const authRoutes = require('./routes/auth');
 const businessRoutes = require('./routes/businesses');
 const adminRoutes = require('./routes/admin');
@@ -12,16 +15,7 @@ const storageRoutes = require('./routes/storage');
 const app = express();
 
 // Middleware - CORS configuration
-const corsOrigins = [
-  // Production domain
-  'https://www.mejorrasales.com',
-  'https://mejorrasales.com',
-  // Legacy domains (if still in use)
-  'https://cardan.app',
-  'https://www.cardan.app',
-  // Environment variable override
-  process.env.FRONTEND_URL
-].filter(Boolean);
+const corsOrigins = [];
 
 // Add production URLs if provided via environment
 if (process.env.FRONTEND_URL) {
@@ -119,6 +113,8 @@ app.listen(PORT, HOST, () => {
   console.log(`🚀 Server running on ${HOST}:${PORT}`);
   console.log(`📡 Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`🔗 API available at: http://${HOST}:${PORT}/api`);
-  console.log(`🌐 Production API URL: https://www.mejorrasales.com:${PORT}/api`);
   console.log(`🔒 CORS configured for: ${corsOrigins.length > 0 ? corsOrigins.join(', ') : 'All origins'}`);
+  
+  // Start keep-alive service after server starts
+  startKeepAlive();
 });

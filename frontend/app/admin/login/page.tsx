@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { supabase, authHelpers } from '@/lib/supabase';
 
 export default function AdminLoginPage() {
@@ -70,9 +71,9 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-dominion-blue mb-6 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-8">
+      <div className="max-w-md w-full bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+        <h2 className="text-2xl sm:text-3xl font-bold text-dominion-blue mb-4 sm:mb-6 text-center">
           Admin Login
         </h2>
 
@@ -114,14 +115,16 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-dominion-gold text-dominion-blue px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50"
+            className="w-full bg-dominion-gold text-dominion-blue px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 text-sm sm:text-base"
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
         <p className="mt-6 text-center text-gray-600 text-sm">
-          Default credentials: admin@dominioncity.com / admin123
+          <Link href="/admin/signup" className="text-dominion-blue hover:underline font-semibold">
+            Create account only for admins
+          </Link>
         </p>
       </div>
     </div>

@@ -34,8 +34,7 @@ NEXT_PUBLIC_API_URL=https://your-backend-domain.com/api
 ```
 
 **Current Issue:**
-- Your `.env.local` points to `https://cardan.app/api`
-- This URL returns 404, meaning the backend is not deployed there
+- Ensure your `.env.local` points to the correct backend URL
 - Use `http://localhost:5050/api` for local development
 
 ### 3. CORS Configuration
@@ -43,10 +42,9 @@ NEXT_PUBLIC_API_URL=https://your-backend-domain.com/api
 The backend CORS is configured to allow:
 - `http://localhost:3000`
 - `http://localhost:3001`
-- `https://cardan.app`
-- `https://www.cardan.app`
+- Any domain specified in `FRONTEND_URL` environment variable
 
-If your frontend is on a different domain, add it to the CORS configuration in `backend/server.js`.
+If your frontend is on a different domain, add it to the CORS configuration in `backend/server.js` or set the `FRONTEND_URL` environment variable.
 
 ### 4. Testing the API
 

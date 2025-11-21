@@ -166,22 +166,22 @@ function ResultsContent() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-50 py-8">
+      <main className="min-h-screen bg-gray-50 py-4 sm:py-8">
         <div className="container mx-auto px-4">
           {/* Search and Filters */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <div className="mb-4">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6 sm:mb-8">
+            <div className="mb-3 sm:mb-4">
               <input
                 type="text"
                 placeholder="Search by name or description..."
-                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dominion-gold"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-dominion-gold"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4">
               <div>
                 <select
                   value={selectedCategory}
@@ -189,7 +189,7 @@ function ResultsContent() {
                     setSelectedCategory(e.target.value);
                     if (e.target.value !== 'Other') setCustomCategory('');
                   }}
-                  className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dominion-gold"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-dominion-gold"
                 >
                   <option value="">All Categories</option>
                   {categories.map((cat) => (
@@ -217,7 +217,7 @@ function ResultsContent() {
                     setSelectedCity(e.target.value);
                     if (e.target.value !== 'Other') setCustomCity('');
                   }}
-                  className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dominion-gold"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-dominion-gold"
                 >
                   <option value="">All Cities</option>
                   {cities.map((city) => (
@@ -252,7 +252,7 @@ function ResultsContent() {
                     }
                     router.push(`/results?${params.toString()}`);
                   }}
-                  className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-dominion-gold"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 focus:ring-dominion-gold"
                 >
                   <option value="">All States</option>
                   <option value="Abia">Abia</option>
@@ -296,16 +296,16 @@ function ResultsContent() {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
               <button
                 onClick={handleSearch}
-                className="bg-dominion-gold text-dominion-blue px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition"
+                className="bg-dominion-gold text-dominion-blue px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:opacity-90 transition text-sm sm:text-base w-full sm:w-auto"
               >
                 Search
               </button>
               <button
                 onClick={clearFilters}
-                className="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition"
+                className="bg-gray-200 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-gray-300 transition text-sm sm:text-base w-full sm:w-auto"
               >
                 Clear Filters
               </button>
@@ -314,20 +314,20 @@ function ResultsContent() {
 
           {/* Results */}
           <div>
-            <h2 className="text-2xl font-bold text-dominion-blue mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-dominion-blue mb-4 sm:mb-6 px-2 sm:px-0">
               {loading ? 'Loading...' : `Found ${businesses.length} ${businesses.length === 1 ? 'business' : 'businesses'}`}
             </h2>
 
             {loading ? (
-              <div className="text-center py-12">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-dominion-blue"></div>
+              <div className="text-center py-8 sm:py-12">
+                <div className="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-dominion-blue"></div>
               </div>
             ) : businesses.length === 0 ? (
-              <div className="text-center py-12 bg-white rounded-lg">
-                <p className="text-gray-600 text-lg">No businesses found. Try adjusting your search or filters.</p>
+              <div className="text-center py-8 sm:py-12 bg-white rounded-lg px-4">
+                <p className="text-gray-600 text-base sm:text-lg">No businesses found. Try adjusting your search or filters.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {businesses.map((business) => (
                   <div
                     key={business.id}
@@ -337,30 +337,37 @@ function ResultsContent() {
                       <img
                         src={business.images[0]}
                         alt={business.name}
-                        className="w-full h-48 object-cover"
+                        className="w-full h-40 sm:h-48 object-cover"
                       />
                     )}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-dominion-blue mb-2">
+                    <div className="p-4 sm:p-6">
+                      <h3 className="text-lg sm:text-xl font-bold text-dominion-blue mb-2">
                         {business.name}
                       </h3>
-                      <p className="text-dominion-gold font-semibold mb-2">
+                      <p className="text-dominion-gold font-semibold mb-2 text-sm sm:text-base">
                         {business.category}
                       </p>
-                      <p className="text-gray-600 mb-2">
-                        📍 {business.city}, {business.state || business.country}
+                      <p className="text-gray-600 mb-2 text-sm sm:text-base flex items-center gap-2">
+                        <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        {business.city}, {business.state || business.country}
                       </p>
                       {business.phone && (
-                        <p className="text-gray-600 mb-2">
-                          📞 {business.phone}
+                        <p className="text-gray-600 mb-2 text-sm sm:text-base flex items-center gap-2">
+                          <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                          {business.phone}
                         </p>
                       )}
-                      <p className="text-gray-700 text-sm mb-4 line-clamp-2">
+                      <p className="text-gray-700 text-xs sm:text-sm mb-4 line-clamp-2">
                         {business.description || 'No description available'}
                       </p>
                       <button
                         onClick={() => router.push(`/business/${business.id}`)}
-                        className="bg-dominion-gold text-dominion-blue px-4 py-2 rounded-lg font-semibold w-full hover:opacity-90 transition"
+                        className="bg-dominion-gold text-dominion-blue px-4 py-2 rounded-lg font-semibold w-full hover:opacity-90 transition text-sm sm:text-base"
                       >
                         View Profile
                       </button>

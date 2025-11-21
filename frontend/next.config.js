@@ -5,8 +5,6 @@ const nextConfig = {
     domains: [
       'images.unsplash.com',
       'ussoyjjlauhggwsezbhy.supabase.co', // Supabase storage
-      'mejorrasales.com',
-      'www.mejorrasales.com',
       // Only include localhost in development
       ...(process.env.NODE_ENV !== 'production' ? ['localhost'] : [])
     ],

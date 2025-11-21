@@ -15,8 +15,8 @@ export default function AdminLayout({
 
   useEffect(() => {
     const checkAuth = async () => {
-      // Allow login page without auth check
-      if (pathname === '/admin/login') {
+      // Allow login and signup pages without auth check
+      if (pathname === '/admin/login' || pathname === '/admin/signup') {
         setLoading(false);
         return;
       }
@@ -44,7 +44,7 @@ export default function AdminLayout({
   }, [pathname, router]);
 
   // Show loading state while checking auth
-  if (loading && pathname !== '/admin/login') {
+  if (loading && pathname !== '/admin/login' && pathname !== '/admin/signup') {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-dominion-blue"></div>

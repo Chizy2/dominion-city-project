@@ -2,8 +2,6 @@ import axios from 'axios';
 import { supabase } from './supabase';
 
 // Use production API URL - should be set via environment variable in production
-// For cPanel deployment with port 5050: https://www.mejorrasales.com:5050/api
-// Or if using reverse proxy: https://www.mejorrasales.com/api
 // IMPORTANT: Set NEXT_PUBLIC_API_URL in production environment variables
 const getApiUrl = () => {
   // Priority 1: Environment variable (REQUIRED in production)
@@ -11,47 +9,30 @@ const getApiUrl = () => {
     return process.env.NEXT_PUBLIC_API_URL;
   }
   
-  // Priority 2: In browser, detect production domain and construct API URL
+  // Priority 2: In browser, use localhost for development
   if (typeof window !== 'undefined') {
     const hostname = window.location.hostname;
-    const protocol = window.location.protocol;
-    
-    // Check if we're on the production domain (case-insensitive)
-    const isProduction = hostname.includes('mejorrasales.com') || 
-                        hostname.includes('MEJORRASALES.COM');
-    
-    if (isProduction) {
-      const host = hostname; // 'www.mejorrasales.com' or 'mejorrasales.com'
-      
-      // If already on port 5050, use current origin
-      if (window.location.port === '5050') {
-        return `${window.location.origin}/api`;
-      }
-      
-      // Otherwise, construct URL with port 5050
-      // Use https in production (even if current page is http, API should be https)
-      const apiProtocol = protocol === 'https:' ? 'https:' : 'https:';
-      return `${apiProtocol}//${host}:5050/api`;
-    }
     
     // If we're on localhost, use localhost API
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
       return 'http://localhost:5050/api';
     }
+    
+    // For other domains, construct API URL from current origin
+    const protocol = window.location.protocol;
+    const port = window.location.port === '5050' ? '' : ':5050';
+    return `${protocol}//${hostname}${port}/api`;
   }
   
   // Priority 3: Check NODE_ENV for development (server-side)
-  // Only use localhost if explicitly in development AND not on production domain
   const isDev = process.env.NODE_ENV === 'development';
-  const isProductionDomain = typeof window !== 'undefined' && 
-                            window.location.hostname.includes('mejorrasales.com');
   
-  if (isDev && !isProductionDomain) {
+  if (isDev) {
     return 'http://localhost:5050/api';
   }
   
-  // Default: Production URL (safe fallback)
-  return 'https://www.mejorrasales.com:5050/api';
+  // Default: Throw error if no API URL is configured
+  throw new Error('NEXT_PUBLIC_API_URL environment variable must be set in production');
 };
 
 // Create axios instance - baseURL will be set dynamically by interceptor
@@ -81,17 +62,14 @@ api.interceptors.request.use((config) => {
     config.url = config.url.startsWith('/') ? config.url : '/' + config.url;
   }
   
-  // Debug logging for production domain
-  if (typeof window !== 'undefined') {
+  // Debug logging
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
     const hostname = window.location.hostname;
-    if (hostname.includes('mejorrasales.com')) {
-      const finalUrl = config.url?.startsWith('http') 
-        ? config.url 
-        : apiUrl + (config.url || '');
-      console.log('[API] Production domain detected:', hostname);
-      console.log('[API] Using API URL:', apiUrl);
-      console.log('[API] Final request URL:', finalUrl);
-    }
+    const finalUrl = config.url?.startsWith('http') 
+      ? config.url 
+      : apiUrl + (config.url || '');
+    console.log('[API] Using API URL:', apiUrl);
+    console.log('[API] Final request URL:', finalUrl);
   }
   
   return config;

@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import axios from 'axios';
 
 // Supabase configuration
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://ussoyjjlauhggwsezbhy.supabase.co';
@@ -6,6 +7,32 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOi
 
 // Create Supabase client for client-side use
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Helper function to get API URL (same logic as api.ts but without circular dependency)
+const getApiUrl = () => {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL;
+  }
+  
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return 'http://localhost:5050/api';
+    }
+    
+    const protocol = window.location.protocol;
+    const port = window.location.port === '5050' ? '' : ':5050';
+    return `${protocol}//${hostname}${port}/api`;
+  }
+  
+  const isDev = process.env.NODE_ENV === 'development';
+  if (isDev) {
+    return 'http://localhost:5050/api';
+  }
+  
+  throw new Error('NEXT_PUBLIC_API_URL environment variable must be set in production');
+};
 
 // Helper functions for authentication
 export const authHelpers = {
@@ -15,6 +42,27 @@ export const authHelpers = {
       password,
     });
     return { data, error };
+  },
+
+  async signUp(email: string, password: string, name?: string, branch?: string) {
+    // Call backend API for signup (uses service role key)
+    // Using axios directly to avoid circular dependency with api.ts
+    try {
+      const apiUrl = getApiUrl();
+      const response = await axios.post(`${apiUrl}/auth/signup`, {
+        email,
+        password,
+        name,
+        branch,
+      });
+      return response.data;
+    } catch (error: any) {
+      // Re-throw with better error message
+      if (error.response?.data) {
+        throw error.response.data;
+      }
+      throw error;
+    }
   },
 
   async signOut() {
