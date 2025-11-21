@@ -15,10 +15,6 @@ const nextConfig = {
     ],
     unoptimized: false, // Allow image optimization
   },
-  // Production environment variables
-  env: {
-    NODE_ENV: process.env.NODE_ENV || 'production',
-  },
   // Removed output: "export" because app uses dynamic features:
   // - Search params (useSearchParams)
   // - API routes to backend
