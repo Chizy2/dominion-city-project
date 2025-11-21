@@ -18,17 +18,18 @@ const getApiUrl = () => {
     const hostname = window.location.hostname;
     
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
-      return 'http://localhost:5050/api';
+      return 'http://localhost:5051/api';
     }
     
     const protocol = window.location.protocol;
-    const port = window.location.port === '5050' ? '' : ':5050';
-    return `${protocol}//${hostname}${port}/api`;
+    // In production, API is typically on the same domain (e.g., dcdirect.online/api)
+    // No port needed for production HTTPS
+    return `${protocol}//${hostname}/api`;
   }
   
   const isDev = process.env.NODE_ENV === 'development';
   if (isDev) {
-    return 'http://localhost:5050/api';
+    return 'http://localhost:5051/api';
   }
   
   throw new Error('NEXT_PUBLIC_API_URL environment variable must be set in production');

@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'dominion-backend',
       script: './backend/server.js',
-      cwd: '/root/dominion-city-project', // Update this to your actual project path
+      cwd: '/var/www/dominion-city-project', // Update this to your actual project path
       instances: 1,
       exec_mode: 'fork',
       env: {
@@ -26,7 +26,7 @@ module.exports = {
     {
       name: 'dominion-frontend',
       script: './frontend/server.js',
-      cwd: '/root/dominion-city-project', // Update this to your actual project path
+      cwd: '/var/www/dominion-city-project', // Update this to your actual project path
       instances: 1,
       exec_mode: 'fork',
       env: {
